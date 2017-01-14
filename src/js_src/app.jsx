@@ -1,15 +1,15 @@
-var Settings = React.createClass({
+var Header = React.createClass({
     render: function() {
         return (
-            <header>
-            <h1>Camper Leaderboard</h1>
-            <em>Vladimir Logachev. FCC. Github.</em>
-            </header>
+            <div>
+                {/*<h1>Top 100 campers</h1>
+                <em>Vladimir Logachev. FCC. Github.</em>*/}
+            </div>
             )
     }
 });
 
-var SingleItem = React.createClass({
+var Camper = React.createClass({
     render: function() {
         var username = this.props.data.username,
             img = this.props.data.img,
@@ -17,15 +17,21 @@ var SingleItem = React.createClass({
             recent = this.props.data.recent,
             lastUpdate = this.props.data.lastUpdate;
         return (
-            <div className="camper">
-                <div className="camper__img"><img src={img}/></div>
-                <div>
-                    <a href={'https://www.freecodecamp.com/' + username} className="camper__username">{username}</a>
-                    <p className="camper__lastupdate">{lastUpdate}</p>
-                </div>
-                <div className="camper__alltime">{alltime}</div>
-                <div className="camper__recent">{recent}</div>
-            </div>
+            <tr className="camper">
+                <td className="camper__info" >
+                    <div>
+                        <a href={'https://www.freecodecamp.com/' + username}>
+                            <img src={img}/>
+                        </a>
+                    </div>
+                    <div>
+                        <a className="camper__username" href={'https://www.freecodecamp.com/' + username}>{username}</a>
+                        <p className="camper__more" >On NN'nd place, last commit DD days ago (today)</p>
+                    </div>
+                </td>
+                <td className="camper__recent digits" >{recent}</td>
+                <td className="camper__alltime digits" >{alltime}</td>
+            </tr>
             )
     }
 });
@@ -39,7 +45,7 @@ var CamperLeaderboardApp = React.createClass({
         if (items.length > 0) {
             itemsTemplate = items.map(function(item, index) {
                 return (
-                    <SingleItem data={item} key={index} />
+                    <Camper data={item} key={index} />
                     )
             })
         } else {
@@ -48,10 +54,19 @@ var CamperLeaderboardApp = React.createClass({
 
         return (
             <section>
-            <Settings data={settings}/>
-            <ul className="all_campers">
-            {itemsTemplate}
-            </ul>
+            <Header data={settings}/>
+            <table className="allcampers">
+                <thead className="allcampers__heading">
+                    <tr>
+                        <th>User</th>
+                        <th className="digits">Recent</th>
+                        <th className="digits">All-time</th>
+                    </tr>
+                </thead>
+                <tbody className="allcampers__body">
+                    {itemsTemplate}
+                </tbody>
+            </table>
             </section>
             );
     }
@@ -89,8 +104,8 @@ var getObjectFromURL = function (url, callback) {
             console.info(newObject);
             callback(newObject);
         } catch (err) {
-            console.warn('That\'s not a proper JSON.');
             console.warn(response);
+            console.error(err);
         }
     };
     xhr.send();

@@ -1,0 +1,37 @@
+$imgsize: 60px
+
+%tablestyle
+  text-decoration: none
+  font-weight: 400
+  border-bottom: none
+  color: #000
+  font-size: 16px
+
+.digits
+  text-align: right
+  
+.allcampers__heading
+  /*  */
+  th 
+    @extend %tablestyle
+
+.camper__info
+  /*  */
+
+  .camper__username
+    width: $imgsize
+    height: $imgsize
+    border-radius: $imgsize
+
+  .camper__username, 
+    @extend %tablestyle
+    font-size: 1.5em
+
+    &:hover
+      @extend %tablestyle
+      font-size: 1.5em
+
+  & > div
+    display: inline-block
+    clear:none
+    vertical-align: middle
