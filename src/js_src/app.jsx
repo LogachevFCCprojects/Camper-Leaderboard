@@ -20,13 +20,15 @@ var Camper = React.createClass({
             <tr className="camper">
                 <td className="camper__info" >
                     <div>
-                        <a href={'https://www.freecodecamp.com/' + username}>
-                            <img src={img}/>
+                        <a className="camper__img" href={'https://www.freecodecamp.com/' + username}>
+                            <img src={img}/ >
                         </a>
                     </div>
                     <div>
                         <a className="camper__username" href={'https://www.freecodecamp.com/' + username}>{username}</a>
-                        <p className="camper__more" >On NN'nd place, last commit DD days ago (today)</p>
+                        <a className="camper__more" href={'https://www.freecodecamp.com/' + username}>
+                            On NN'nd place, last commit DD days ago (today)
+                        </a>
                     </div>
                 </td>
                 <td className="camper__recent digits" >{recent}</td>

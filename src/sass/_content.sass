@@ -1,37 +1,53 @@
 $imgsize: 60px
 
-%tablestyle
-  text-decoration: none
-  font-weight: 400
-  border-bottom: none
-  color: #000
-  font-size: 16px
-
 .digits
   text-align: right
   
 .allcampers__heading
   /*  */
   th 
-    @extend %tablestyle
+    @extend %regular-font
+
+  th + th 
+    padding-left: .5em
+
+.allcampers__body
+  /*  */
+
+  td + td
+    margin-left: .5em
 
 .camper__info
   /*  */
+  .camper__img
+    @extend %regular-font
 
-  .camper__username
-    width: $imgsize
-    height: $imgsize
-    border-radius: $imgsize
-
+    img
+      width: $imgsize
+      height: $imgsize
+      border-radius: $imgsize
+  
   .camper__username, 
-    @extend %tablestyle
-    font-size: 1.5em
+    @extend %header-font
 
     &:hover
-      @extend %tablestyle
-      font-size: 1.5em
+      @extend %header-font
+
+  .camper__more
+    @extend %regular-font
+    display: block
+    font-size: 14px
+
+    &:hover
+      @extend %regular-font
+      font-size: 14px
 
   & > div
     display: inline-block
     clear:none
     vertical-align: middle
+
+img
+  width: $imgsize
+  height: $imgsize
+  border-radius: $imgsize
