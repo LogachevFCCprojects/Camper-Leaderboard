@@ -1,12 +1,13 @@
-$imgsize: 50px
+$imgsize: 80px
 
 .digits
   text-align: right
   
 .allcampers__heading
   /*  */
-  th 
-    @extend %regular-font
+  th a
+    @extend %header-font
+    color: $highlight
 
   th + th 
     padding-left: .5em
@@ -16,6 +17,16 @@ $imgsize: 50px
 
   td + td
     margin-left: .5em
+  td:first-child
+    padding-left: .5em
+  td:last-child
+    padding-right: .5em
+
+.camper
+  padding: .5em
+
+  &:hover
+    background-color: rgba($link, .2)
 
 .camper__info
   /*  */
@@ -26,12 +37,15 @@ $imgsize: 50px
       width: $imgsize
       height: $imgsize
       border-radius: $imgsize
+      mix-blend-mode: luminosity
   
   .camper__username, 
     @extend %header-font
+    color: $link
 
     &:hover
       @extend %header-font
+      color: $highlight
 
   .camper__more
     @extend %regular-font

@@ -1,9 +1,14 @@
+
+var recentCampersUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
+var alltimeCampersUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+
 var Header = React.createClass({
     render: function() {
+        var sortby = this.props.sortby;
         return (
             <div className="page__title">
                 <h1>Top 100 FreeCodeCamp students</h1>
-                <h2>by <span>recently</span> earned brownie points</h2>
+                <h2>by&nbsp;<span>{sortby}</span> earned brownie&nbsp;points</h2>
 
                 <em>Project by <a href="http://vladimirlogachev.ru" target="_blank" rel="noopener noreferrer">Vladimir Logachev</a>. </em>
                 <em>Made with React and SASS. <a href="https://github.com/LogachevFCCprojects/Camper-Leaderboard" target="_blank" rel="noopener noreferrer">Github</a></em>
@@ -24,14 +29,14 @@ var Camper = React.createClass({
                 <td className="camper__info" >
                     <div>
                         <a className="camper__img" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">
-                            <img src={img}/ >
+                            <img src={img}/>
                         </a>
                     </div>
                     <div>
                         <a className="camper__username" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">{username}</a>
-                        <a className="camper__more" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">
+                        {/*<a className="camper__more" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">
                             On NN'nd place, last commit DD days ago (today)
-                        </a>
+                        </a>*/}
                     </div>
                 </td>
                 <td className="camper__recent digits" >{recent}</td>
@@ -43,7 +48,7 @@ var Camper = React.createClass({
 
 var CamperLeaderboardApp = React.createClass({
     render: function() {
-        var settings = {author: 1, location: 0},
+        var sortby = this.props.sortby,
         items = this.props.data;
         var itemsTemplate;
 
@@ -59,13 +64,17 @@ var CamperLeaderboardApp = React.createClass({
 
         return (
             <section>
-            <Header data={settings}/>
+            <Header sortby={sortby}/>
             <table className="allcampers">
                 <thead className="allcampers__heading">
                     <tr>
                         <th>Student's username</th>
-                        <th className="digits">Recent</th>
-                        <th className="digits">All-time</th>
+                        <th className="digits">
+                            <a href="#">Recent</a>
+                        </th>
+                        <th className="digits">
+                            <a href="#">All-time</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody className="allcampers__body">
@@ -77,9 +86,22 @@ var CamperLeaderboardApp = React.createClass({
     }
 });
 
-var renderAll = function (obj) {
-  ReactDOM.render(
-    <CamperLeaderboardApp data={obj} />,
+var renderRecent = function (initialArray) {
+    initialArray.sort(function (a, b) {
+        return b.recent - a.recent;
+    });
+    ReactDOM.render(
+    <CamperLeaderboardApp sortby={'recently'} data={initialArray} />,
+    document.getElementById('root')
+    );
+};
+
+var renderAlltime = function (initialArray) {
+    initialArray.sort(function (a, b) {
+        return b.alltime - a.alltime;
+    });
+    ReactDOM.render(
+    <CamperLeaderboardApp sortby={'all-time'} data={initialArray} />,
     document.getElementById('root')
     );
 };
@@ -116,8 +138,6 @@ var getObjectFromURL = function (url, callback) {
     xhr.send();
 };
 
-var recentCampersUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
-var alltimeCampersUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
-
-getObjectFromURL(alltimeCampersUrl, renderAll);
+getObjectFromURL(recentCampersUrl, renderRecent);
+//getObjectFromURL(alltimeCampersUrl, renderAlltime);
 

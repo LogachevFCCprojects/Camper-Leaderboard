@@ -6,10 +6,6 @@ $medium-up: 600px;
 $large-up: 1000px;
 $global-radius: 4px;
 
-@mixin heading-font-regular {
-	font-family: 'Helvetica', 'Helvetica Neue', 'Arial', sans-serif;;
-}
-
 //SUPER BASIC PAGE STYLING
 *,*:before,*:after{
   -webkit-box-sizing: border-box;
@@ -20,16 +16,6 @@ main {
   padding: 2em;  
   float: left;
   width: 100%;
-}
-
-a {
-  color: #222;
-  font-weight: bold;
-  text-decoration: none;
-  
-  &:hover {
-    color: $primary-color;
-  }
 }
 ///BASIC TABLE STYLING
 table {
@@ -43,8 +29,6 @@ table {
 			padding: 0.35em 0 .35em;
        font-weight: 400;
 			text-align: left;
-			@include heading-font-regular;
-			font-size: 1.25em;
 		}
 		
 	}
@@ -76,8 +60,6 @@ table {
 			padding: 0.35em 0 .35em;
 
 			text-align: left;
-			@include heading-font-regular;
-			font-size: 1.25em;
 		}
 	}
 }
@@ -139,7 +121,6 @@ table {
 					padding: .5em .5em .5em 0;
 					clear: both;
 					margin: -.5em 0 0 -100%;
-					@include heading-font-regular;
 					font-size: 1.125em;
 
 				}
