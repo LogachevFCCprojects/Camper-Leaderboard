@@ -1,9 +1,12 @@
 var Header = React.createClass({
     render: function() {
         return (
-            <div>
-                {/*<h1>Top 100 campers</h1>
-                <em>Vladimir Logachev. FCC. Github.</em>*/}
+            <div className="page__title">
+                <h1>Top 100 FreeCodeCamp students</h1>
+                <h2>by <span>recently</span> earned brownie points</h2>
+
+                <em>Project by <a href="http://vladimirlogachev.ru" target="_blank" rel="noopener noreferrer">Vladimir Logachev</a>. </em>
+                <em>Made with React and SASS. <a href="https://github.com/LogachevFCCprojects/Camper-Leaderboard" target="_blank" rel="noopener noreferrer">Github</a></em>
             </div>
             )
     }
@@ -20,13 +23,13 @@ var Camper = React.createClass({
             <tr className="camper">
                 <td className="camper__info" >
                     <div>
-                        <a className="camper__img" href={'https://www.freecodecamp.com/' + username}>
+                        <a className="camper__img" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">
                             <img src={img}/ >
                         </a>
                     </div>
                     <div>
-                        <a className="camper__username" href={'https://www.freecodecamp.com/' + username}>{username}</a>
-                        <a className="camper__more" href={'https://www.freecodecamp.com/' + username}>
+                        <a className="camper__username" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">{username}</a>
+                        <a className="camper__more" href={'https://www.freecodecamp.com/' + username} target="_blank" rel="noopener noreferrer">
                             On NN'nd place, last commit DD days ago (today)
                         </a>
                     </div>
@@ -60,7 +63,7 @@ var CamperLeaderboardApp = React.createClass({
             <table className="allcampers">
                 <thead className="allcampers__heading">
                     <tr>
-                        <th>User</th>
+                        <th>Student's username</th>
                         <th className="digits">Recent</th>
                         <th className="digits">All-time</th>
                     </tr>
